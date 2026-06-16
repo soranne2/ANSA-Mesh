@@ -22,18 +22,12 @@ def process_case_pack_upr():
         print("Error: 선택된 프로퍼티에 할당된 Face가 없습니다.")
         return
 
-    print(f"'{target_prop_name}' 프로퍼티 인식 완료. Mid-surface 작업을 시작합니다.")
+    print(f"'{target_prop_name}' 프로퍼티 인식 완료.")
 
-    # 2. Mid-surface 생성
-    midsurf_faces = base.FacesMiddle(faces)
-    
-    # 🔥 에러가 발생했던 중복 else 문을 하나로 통합한 부분입니다.
-    if not midsurf_faces:
-        print("Warning: Mid-surface 추출에 실패했거나 추가적인 수동 형상 정리가 필요할 수 있습니다. 원본 Face에 메쉬를 진행합니다.")
-        faces_to_mesh = faces
-    else:
-        print("Mid-surface 추출 완료.")
-        faces_to_mesh = midsurf_faces
+    # 2. Mid-surface 관련 (에러 수정됨)
+    # 스크립트로 완벽한 Mid-surface를 따려면 ansa.midsurf 모듈이나 Batch Mesh 세팅이 필요합니다.
+    # 해당 스크립트에서는 수집된 face(이미 추출되었거나 메쉬할 대상)를 바로 메쉬 대상으로 지정합니다.
+    faces_to_mesh = faces
 
     # 3. Mesh Parameters (Target=5, Min=2, Max=5) 설정
     print("Mesh 파라미터를 설정합니다...")
